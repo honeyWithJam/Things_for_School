@@ -34,21 +34,15 @@
 class standardDeck : public Deck
 {
 	public:
-		int max_size = DECK_SIZE; 
-		/// Default constructor.
+		standardDeck(); // default constructor 
 
-		standardDeck(const standardDeck & other);
+		standardDeck(const standardDeck & other); // copy constructor
 
-		Deck * clone() const override;
-		
-		standardDeck();
-		
-		/// Default destructor.
-		~standardDeck();
+		Deck * clone() const override; // clone the current standardDeck
 
-		void initializeDeck();	// Ask Rybar about this one
+		~standardDeck(); // default destructor
 
-		// bool mergeDecks(standardDeck & D, bool);	// same for both
+		void initializeDeck();	// initialize the standard deck
 		
 };
 

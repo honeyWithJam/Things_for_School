@@ -7,24 +7,37 @@
 
 #include "NonStandardDeck.h"
 
-nonStandardDeck::nonStandardDeck() : Deck(SIZE)
+// nonStandardDeck::nonStandardDeck()  // default constructor
+// {
+
+// }
+
+nonStandardDeck::nonStandardDeck() : Deck(SIZE) // default constructor that initializes the deck size from Deck.txt
 {
-    std::ifstream Deckfile;
+    std::ifstream Deckfile; // create Deckfile from ifstream
     
-    Deckfile.open("Deck.txt");
+    Deckfile.open("Deck.txt");  // read in from Deck.txt
 
-    Deckfile >> size_;
+    Deckfile >> size_; // read in the size of the deck  
 
-    Deckfile.close();
+    if(size_ > 0) // check if the deck size is greater than 0
+    {
+        size_= size_;  // if so, set the number of cards to the deck size
+    }
+    else
+    {
+        size_ = 0; // else set it to 0 
+    }
+
+    Deckfile.close(); // close Deck.txt
 }
 
-nonStandardDeck::nonStandardDeck(const nonStandardDeck & other) : Deck(other)
+nonStandardDeck::nonStandardDeck(const nonStandardDeck & other) : Deck(other)   // copy constructor
 {
-    std::cout << "Copying nonStandardDeck..." << std::endl;
-    
-    for(int i = 0; i < numCards_; i++)
+
+    for(int i = 0; i < numCards_; i++)  // iterate through the cards in the deck 
     {
-        deck_[i] = other.deck_[i];
+        deck_[i] = other.deck_[i];  // copy each card
 
     } // copy the cards from the original deck into the new deck
 
@@ -32,10 +45,10 @@ nonStandardDeck::nonStandardDeck(const nonStandardDeck & other) : Deck(other)
 
 Deck * nonStandardDeck::clone() const
 {
-    return new nonStandardDeck(*this);
+    return new nonStandardDeck(*this); // creates a new copy of the current nonStandardDeck object
 }
 
-nonStandardDeck::~nonStandardDeck()
+nonStandardDeck::~nonStandardDeck() // destructor 
 {
     // if(deck_ != nullptr)
     // {
@@ -45,80 +58,21 @@ nonStandardDeck::~nonStandardDeck()
 
 void nonStandardDeck::initializeDeck()	// will initialize the cards found in Deck.txt
 {
-    std::ifstream Deckfile;
+    std::ifstream Deckfile; // create Deckfile from ifstream
     
-    Deckfile.open("Deck.txt");
+    Deckfile.open("Deck.txt"); // read in from Deck.txt
 
-    Deckfile >> size_;
+    Deckfile >> size_; // read in the size of the deck
 
     int suit = 0;
     int face = 0;
 
-    while(!(Deckfile.eof()))
+    while(!(Deckfile.eof()))  // continue until the end of the file is reached
     {
-        Deckfile >> suit >> face;
-        Card newCard(suit,face);
-        addCard(newCard);
+        Deckfile >> suit >> face;  // read in the suit and face value of the next card
+        Card newCard(suit,face);  // create a new card with the read values
+        addCard(newCard);  // add the new card to the deck
     }
 
-    Deckfile.close();
-    
-    // while(numCards_ < size_)
-    // {
-    //     for(int suits = 1; suits < 5; suits++) 
-    //     {
-    //         for(int faces = 1; faces < 14; faces++)
-    //         {
-    //             if((numCards_ + 1) != size_)
-    //             {
-    //                 Card newCard(suits, faces);
-    //                 addCard(newCard);
-    //             }
-    //         }
-    //     }
-    // }
+    Deckfile.close(); // close Deck.txt
 }
-
-
-// bool nonStandardDeck::mergeDecks(nonStandardDeck & D, bool b)
-// {
-//     if(numCards_ < size_)
-//     {
-//         int mergeNum = size_ - numCards_;   // the max num you can put into current deck
-
-//         if(mergeNum > D.getNumCards())  // check if second deck num is less than merge num
-//         {
-//             mergeNum = D.getNumCards(); // if it does, make merge num equal to second deck num 
-//         }
-
-//         for(int i = 0; i < mergeNum; i++)   // run the merge
-//         {
-//             deck_[numCards_ + i] = D.deck_[i];  // merge the next availiable place in first deck with next card of second deck
-//         }
-
-//         numCards_ += mergeNum; // correct the number of cards in the first deck
-
-//         if(mergeNum < D.getNumCards())  // check if mergeNum is less than number of cards in  second deck
-//         {
-//             D.setNumCards(D.getNumCards() - mergeNum);  // if so, set num cards in second deck to its num cards minus mergeNum
-//         }
-//         else
-//         {
-//             D.numCards_ = 0;    // else set the second deck to 0
-//         }
-
-
-//         if(b)   // check if b is true
-//         {
-//             randomShuffle();    // if it is, shuffle
-//         }
-
-//         return true; // then return true
-//     }
-//     else    // if the number of cards in first deck is not less than the number of cards that can fit in it
-//     {
-//         return false;   // you can't merge anything, so return back to driver
-//     }
-// }
-
-

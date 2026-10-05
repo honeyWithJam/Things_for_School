@@ -51,10 +51,14 @@ void makeCards(Deck * b)    // makes cards for nonstandard Deck
     out.close();
 }
 
-int gameOfWar(Deck * battleGround, Deck * Deck1, Deck * Deck2)
+int gameOfWar(Deck * battleGround, Deck * Deck1, Deck * Deck2, int gameResults[])
 {   
 
     int numGames = 0;
+    int totalWinsD1 = 0;
+    int totalWinsD2 = 0;
+    int totalCardsD1 = 0;
+    int totalCardsD2 = 0;
 
     for(int i = 0; i < DECK_SIZE; i++)
     {
@@ -98,15 +102,17 @@ int gameOfWar(Deck * battleGround, Deck * Deck1, Deck * Deck2)
                   
         }
 
+
         if(Deck2 -> isEmpty()) // check if player two has no cards left
         {
-            Deck1 -> deckWins(); // if so, add a card to player ones win count
-            Deck1 -> sumCards(); // update player ones total card count
+            totalWinsD1++; // if so, add a card to player ones win count
+            totalCardsD1 = totalCardsD1 + Deck1 -> getNumCards(); // update player ones total card count
+
         }
         else // if player one has no cards left (Deck1 -> isEmpty)
         {
-            Deck2 -> deckWins(); // if so, add a card to player twos win count
-            Deck2 -> sumCards(); // update player twos total card count
+            totalWinsD2++; // if so, add a card to player twos win count
+            totalCardsD2 = totalCardsD2 + Deck2 -> getNumCards(); // update player twos total card count
         }
 
         battleGround -> mergeDecks(Deck1, false);   // merge deck 1 into BG
@@ -115,18 +121,52 @@ int gameOfWar(Deck * battleGround, Deck * Deck1, Deck * Deck2)
         numGames++; // increase the number of games played
     }
 
-    return numGames;    // return the number of games played
+    gameResults[0] = numGames;  // index the numGames in 0 
+    gameResults[1] = totalWinsD1; // index the total wins of player 1 in 1
+    gameResults[2] = totalWinsD2; // index the total wins of player 2 in 2
+    gameResults[3] = totalCardsD1; // index the total cards of player 1 in 3
+    gameResults[4] = totalCardsD2; // index the total cards of player 2 in 4
+
+    return 0;
+}
+
+int avgCards(int totalCards)
+{
+    return totalCards / TOTALGAMES; // calculate the avg num of cards per player
+}
+
+void printGameResults(int gameResults[5])
+{
+    int numGames = gameResults[0]; // get the number of games played
+    int totalWinsD1 = gameResults[1]; // get the total wins of player 1
+    int totalWinsD2 = gameResults[2]; // get the total wins of player 2
+    int totalCardsD1 = gameResults[3]; // get the total cards of player 1
+    int totalCardsD2 = gameResults[4]; // get the total cards of player 2
+
+    if(totalWinsD1 > totalWinsD2) // player 1 wins
+    {
+        std::cout << "Player 1 was the champion with " << totalWinsD1 << " vitories versus Player 2" << std::endl;
+    }
+    else if(totalWinsD1 < totalWinsD2) // player 2 wins
+    {
+        std::cout << "Player 2 was the champion with " << totalWinsD2 << " vitories versus Player 1" << std::endl;
+    }
+    else // tie
+    {
+        std::cout << "The players tied with " << totalWinsD1 << " victories." << std::endl;
+    }
+
+    std::cout << "Player 1 Average Score: " <<  avgCards(totalCardsD1) << std::endl;    // p1 avg cards
+    std::cout << "Player 2 Average Score: " <<  avgCards(totalCardsD2) << std::endl;    // p2 avg cards
+
 }
 
 int main()
 { 
-
     // create the players, and battlegrounds as deck objects
 
     Deck * Deck1 = new standardDeck;    // player 1 - standard
     // Deck * Deck2 = new standardDeck;   // player 2- standard
-    
-    // Deck Deck2 = *Deck1;
 
     Deck * Deck2 = Deck1 -> clone();
 
@@ -135,14 +175,12 @@ int main()
     Deck * Deck3 = new nonStandardDeck; // player 1 - nonstandard
     // Deck * Deck4 = new nonStandardDeck; // player 2- nonstandard
 
-    // Deck * Deck4(Deck3);
-
     Deck * Deck4 = Deck3 -> clone();
 
-    Deck * battleGround = new standardDeck; // battleground - standard
+    //Deck * battleGround = new standardDeck; // battleground - standard
     // Deck * battleGround2 = new nonStandardDeck ; // battleground - nonstandard
 
-    // Deck * battleGround2(battleGround);
+    Deck * battleGround = Deck1 -> clone();
 
     Deck * battleGround2 = Deck3 -> clone();
 
@@ -173,7 +211,11 @@ int main()
 
     // play the first game of war
 
-    int numGames = gameOfWar(deckArray[4], deckArray[0], deckArray[1]);
+    // and get the results of the first game
+
+    int gameResults[5]; // make an array to put game results in
+
+    gameOfWar(deckArray[4], deckArray[0], deckArray[1], gameResults);    // play the first game of war
 
     // create the cards for the second deck from the first deck
     // this prints the cards from the first deck into "Deck.txt"
@@ -184,50 +226,23 @@ int main()
 
     deckArray[5] -> initializeDeck();
 
-    int numGames2 = gameOfWar(deckArray[5], deckArray[2], deckArray[3]);    // play the non standard deck of war
+    // play the second game of war using non standard deck
+
+    // and get the results of the second game
+
+    int gameResults2[5];
+
+    gameOfWar(deckArray[5], deckArray[2], deckArray[3], gameResults2);    // play the non standard deck of war
 
     // print winners
 
-    if(deckArray[0] -> getNumWins() > deckArray[1] -> getNumWins()) // player 1 wins
-    {
-        std::cout << "Player 1 was the champion with " << deckArray[0] -> getNumWins() << " vitories versus Player 2" << std::endl;
-    }
-    else if(deckArray[0] -> getNumWins() < deckArray[1] -> getNumWins()) // player 2 wins
-    {
-        std::cout << "Player 2 was the champion with " << deckArray[1] -> getNumWins() << " vitories versus Player 1" << std::endl;
-    }
-    else // tie
-    {
-        std::cout << "The players tied with " << deckArray[0] -> getNumWins() << " victories." << std::endl;
-    }
+    std::cout << "StandardDeck Game: \n" << std::endl;
 
-    std::cout << "" << std::endl;
+    printGameResults(gameResults);
 
-    std::cout << "Player 1 Average Score: " <<  deckArray[0] -> getAverageCards() << std::endl;
-    std::cout << "Player 2 Average Score: " <<  deckArray[1] -> getAverageCards() << std::endl;
+    std::cout << "NonStandardDeck Game: \n" << std::endl;
 
-    std::cout << "" << std::endl;
-
-    std::cout << "NonStandardDeck Game: " << std::endl;
-
-    std::cout << "" << std::endl;
-
-    if(deckArray[2] -> getNumWins() > deckArray[3] -> getNumWins()) // player 1 wins
-    {
-        std::cout << "Player 1 was the champion with " << deckArray[2] -> getNumWins() << " vitories versus Player 2" << std::endl;
-    }
-    else if(deckArray[2] -> getNumWins() < deckArray[3] -> getNumWins()) // player 2 wins
-    {
-        std::cout << "Player 2 was the champion with " << deckArray[3] -> getNumWins() << " vitories versus Player 1" << std::endl;
-    }
-    else // tie
-    {
-        std::cout << "The players tied with " << deckArray[2] -> getNumWins() << " victories." << std::endl;
-    }
-
-    std::cout << "Player 1 Average Score: " <<  deckArray[2] -> getAverageCards() << std::endl;
-    std::cout << "Player 2 Average Score: " <<  deckArray[3] -> getAverageCards() << std::endl;
-
+    printGameResults(gameResults2);
 
     for(int i = 0; i < std::size(deckArray); i++)   // delete all decks
     {

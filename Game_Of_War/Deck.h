@@ -41,7 +41,7 @@ class Deck
 
 		Deck(const Deck & other);
 
-		virtual Deck * clone() const = 0;
+		virtual Deck * clone() const = 0;	// https://iamsorush.com/posts/cpp-polymorphic-clone/
 
 		/// Default destructor.
 		virtual ~Deck(); 
@@ -72,10 +72,6 @@ class Deck
 
 		int getNumCards();	// same for both
 
-		int getNumWins();	// same for both
-
-		void deckWins();	// same for both
-
 		void displayCard(int i);	// same for both
 
 		bool compare(Deck * Cards);
@@ -86,9 +82,6 @@ class Deck
 
 		int getFaceVal(int i);
 
-		void sumCards();	
-
-		int getAverageCards();
 		/**
 	     * Prints the contents of the Deck. This method should call the 
 		 * print() method on each Card.
@@ -99,8 +92,6 @@ class Deck
 		Card * deck_;	// Pointer to record the location of the array of Cards in memory.
 		int numCards_;	// stores the number of Cards currently in the deck.
 		int size_;	// used for non-standard deck
-		int numWins_; // outputs the number of wins of the deck
-		int sumCards_; // the sum of wins each player got
 };
 
 #endif

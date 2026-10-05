@@ -1,15 +1,165 @@
-==23481== Memcheck, a memory error detector
-==23481== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
-==23481== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
-==23481== Command: ./A2.exe
-==23481== Parent PID: 23480
-==23481== 
-==23481== 
-==23481== HEAP SUMMARY:
-==23481==     in use at exit: 0 bytes in 0 blocks
-==23481==   total heap usage: 24 allocs, 24 frees, 181,984 bytes allocated
-==23481== 
-==23481== All heap blocks were freed -- no leaks are possible
-==23481== 
-==23481== For lists of detected and suppressed errors, rerun with: -s
-==23481== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==56148== Memcheck, a memory error detector
+==56148== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==56148== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
+==56148== Command: ./A2.exe
+==56148== Parent PID: 56147
+==56148== 
+==56148== Use of uninitialised value of size 8
+==56148==    at 0x4003F30: size (basic_string.h:1165)
+==56148==    by 0x4003F30: length (basic_string.h:1176)
+==56148==    by 0x4003F30: basic_string (basic_string.h:617)
+==56148==    by 0x4003F30: Card::getFace[abi:cxx11]() (card.cpp:43)
+==56148==    by 0x4004A34: getTopCard (Deck.cpp:162)
+==56148==    by 0x4004A34: Deck::compare(Deck*) (Deck.cpp:148)
+==56148==    by 0x400349A: gameOfWar(Deck*, Deck*, Deck*, int*) (DriverA2.cpp:93)
+==56148==    by 0x4002D88: main (DriverA2.cpp:222)
+==56148==  Uninitialised value was created by a heap allocation
+==56148==    at 0x48575F3: operator new[](unsigned long) (vg_replace_malloc.c:730)
+==56148==    by 0x4004574: Deck::Deck(int) (Deck.cpp:15)
+==56148==    by 0x40043C1: standardDeck::standardDeck() (StandardDeck.cpp:10)
+==56148==    by 0x4002CFA: main (DriverA2.cpp:168)
+==56148== 
+==56148== Use of uninitialised value of size 8
+==56148==    at 0x4003F30: size (basic_string.h:1165)
+==56148==    by 0x4003F30: length (basic_string.h:1176)
+==56148==    by 0x4003F30: basic_string (basic_string.h:617)
+==56148==    by 0x4003F30: Card::getFace[abi:cxx11]() (card.cpp:43)
+==56148==    by 0x4004A49: getTopCard (Deck.cpp:162)
+==56148==    by 0x4004A49: Deck::compare(Deck*) (Deck.cpp:148)
+==56148==    by 0x400349A: gameOfWar(Deck*, Deck*, Deck*, int*) (DriverA2.cpp:93)
+==56148==    by 0x4002D88: main (DriverA2.cpp:222)
+==56148==  Uninitialised value was created by a heap allocation
+==56148==    at 0x48575F3: operator new[](unsigned long) (vg_replace_malloc.c:730)
+==56148==    by 0x4004574: Deck::Deck(int) (Deck.cpp:15)
+==56148==    by 0x40043C1: standardDeck::standardDeck() (StandardDeck.cpp:10)
+==56148==    by 0x4002CFA: main (DriverA2.cpp:168)
+==56148== 
+==56148== Use of uninitialised value of size 8
+==56148==    at 0x4003F30: size (basic_string.h:1165)
+==56148==    by 0x4003F30: length (basic_string.h:1176)
+==56148==    by 0x4003F30: basic_string (basic_string.h:617)
+==56148==    by 0x4003F30: Card::getFace[abi:cxx11]() (card.cpp:43)
+==56148==    by 0x4004A34: getTopCard (Deck.cpp:162)
+==56148==    by 0x4004A34: Deck::compare(Deck*) (Deck.cpp:148)
+==56148==    by 0x4003501: gameOfWar(Deck*, Deck*, Deck*, int*) (DriverA2.cpp:83)
+==56148==    by 0x4002D88: main (DriverA2.cpp:222)
+==56148==  Uninitialised value was created by a heap allocation
+==56148==    at 0x48575F3: operator new[](unsigned long) (vg_replace_malloc.c:730)
+==56148==    by 0x4004574: Deck::Deck(int) (Deck.cpp:15)
+==56148==    by 0x40043C1: standardDeck::standardDeck() (StandardDeck.cpp:10)
+==56148==    by 0x4002CFA: main (DriverA2.cpp:168)
+==56148== 
+==56148== Use of uninitialised value of size 8
+==56148==    at 0x4003F30: size (basic_string.h:1165)
+==56148==    by 0x4003F30: length (basic_string.h:1176)
+==56148==    by 0x4003F30: basic_string (basic_string.h:617)
+==56148==    by 0x4003F30: Card::getFace[abi:cxx11]() (card.cpp:43)
+==56148==    by 0x4004A49: getTopCard (Deck.cpp:162)
+==56148==    by 0x4004A49: Deck::compare(Deck*) (Deck.cpp:148)
+==56148==    by 0x4003501: gameOfWar(Deck*, Deck*, Deck*, int*) (DriverA2.cpp:83)
+==56148==    by 0x4002D88: main (DriverA2.cpp:222)
+==56148==  Uninitialised value was created by a heap allocation
+==56148==    at 0x48575F3: operator new[](unsigned long) (vg_replace_malloc.c:730)
+==56148==    by 0x4004574: Deck::Deck(int) (Deck.cpp:15)
+==56148==    by 0x40043C1: standardDeck::standardDeck() (StandardDeck.cpp:10)
+==56148==    by 0x4002CFA: main (DriverA2.cpp:168)
+==56148== 
+==56148== 
+==56148== Process terminating with default action of signal 2 (SIGINT)
+==56148==    at 0x4B9F917: __random_r (random_r.c:379)
+==56148==    by 0x4B9F917: srandom_r (random_r.c:221)
+==56148==    by 0x4B9F5FC: srand (random.c:212)
+==56148==    by 0x40047BA: Deck::randomShuffle() (Deck.cpp:95)
+==56148==    by 0x40048B7: Deck::mergeDecks(Deck*, bool) (Deck.cpp:83)
+==56148==    by 0x400354F: gameOfWar(Deck*, Deck*, Deck*, int*) (DriverA2.cpp:95)
+==56148==    by 0x4002D88: main (DriverA2.cpp:222)
+==56148== 
+==56148== HEAP SUMMARY:
+==56148==     in use at exit: 137,568 bytes in 13 blocks
+==56148==   total heap usage: 15 allocs, 2 frees, 146,232 bytes allocated
+==56148== 
+==56148== 24 bytes in 1 blocks are still reachable in loss record 1 of 13
+==56148==    at 0x4855FD3: operator new(unsigned long) (vg_replace_malloc.c:488)
+==56148==    by 0x4002CEF: main (DriverA2.cpp:168)
+==56148== 
+==56148== 24 bytes in 1 blocks are still reachable in loss record 2 of 13
+==56148==    at 0x4855FD3: operator new(unsigned long) (vg_replace_malloc.c:488)
+==56148==    by 0x4004346: standardDeck::clone() const (StandardDeck.cpp:33)
+==56148==    by 0x4002D02: main (DriverA2.cpp:173)
+==56148== 
+==56148== 24 bytes in 1 blocks are still reachable in loss record 3 of 13
+==56148==    at 0x4855FD3: operator new(unsigned long) (vg_replace_malloc.c:488)
+==56148==    by 0x4002D0F: main (DriverA2.cpp:177)
+==56148== 
+==56148== 24 bytes in 1 blocks are still reachable in loss record 4 of 13
+==56148==    at 0x4855FD3: operator new(unsigned long) (vg_replace_malloc.c:488)
+==56148==    by 0x4004C46: nonStandardDeck::clone() const (NonStandardDeck.cpp:47)
+==56148==    by 0x4002D22: main (DriverA2.cpp:182)
+==56148== 
+==56148== 24 bytes in 1 blocks are still reachable in loss record 5 of 13
+==56148==    at 0x4855FD3: operator new(unsigned long) (vg_replace_malloc.c:488)
+==56148==    by 0x4002D2F: main (DriverA2.cpp:184)
+==56148== 
+==56148== 24 bytes in 1 blocks are still reachable in loss record 6 of 13
+==56148==    at 0x4855FD3: operator new(unsigned long) (vg_replace_malloc.c:488)
+==56148==    by 0x4004C46: nonStandardDeck::clone() const (NonStandardDeck.cpp:47)
+==56148==    by 0x4002D43: main (DriverA2.cpp:189)
+==56148== 
+==56148== 424 bytes in 1 blocks are still reachable in loss record 7 of 13
+==56148==    at 0x48575F3: operator new[](unsigned long) (vg_replace_malloc.c:730)
+==56148==    by 0x4004574: Deck::Deck(int) (Deck.cpp:15)
+==56148==    by 0x40043C1: standardDeck::standardDeck() (StandardDeck.cpp:10)
+==56148==    by 0x4002CFA: main (DriverA2.cpp:168)
+==56148== 
+==56148== 424 bytes in 1 blocks are still reachable in loss record 8 of 13
+==56148==    at 0x48575F3: operator new[](unsigned long) (vg_replace_malloc.c:730)
+==56148==    by 0x4004670: Deck::Deck(Deck const&) (Deck.cpp:21)
+==56148==    by 0x4004354: standardDeck (StandardDeck.cpp:22)
+==56148==    by 0x4004354: standardDeck::clone() const (StandardDeck.cpp:33)
+==56148==    by 0x4002D02: main (DriverA2.cpp:173)
+==56148== 
+==56148== 424 bytes in 1 blocks are still reachable in loss record 9 of 13
+==56148==    at 0x48575F3: operator new[](unsigned long) (vg_replace_malloc.c:730)
+==56148==    by 0x4004574: Deck::Deck(int) (Deck.cpp:15)
+==56148==    by 0x40043C1: standardDeck::standardDeck() (StandardDeck.cpp:10)
+==56148==    by 0x4002D3A: main (DriverA2.cpp:184)
+==56148== 
+==56148== 20,808 bytes in 1 blocks are still reachable in loss record 10 of 13
+==56148==    at 0x48575F3: operator new[](unsigned long) (vg_replace_malloc.c:730)
+==56148==    by 0x4004574: Deck::Deck(int) (Deck.cpp:15)
+==56148==    by 0x4005056: nonStandardDeck::nonStandardDeck() (NonStandardDeck.cpp:14)
+==56148==    by 0x4002D1A: main (DriverA2.cpp:177)
+==56148== 
+==56148== 20,808 bytes in 1 blocks are still reachable in loss record 11 of 13
+==56148==    at 0x48575F3: operator new[](unsigned long) (vg_replace_malloc.c:730)
+==56148==    by 0x4004670: Deck::Deck(Deck const&) (Deck.cpp:21)
+==56148==    by 0x4004C54: nonStandardDeck (NonStandardDeck.cpp:34)
+==56148==    by 0x4004C54: nonStandardDeck::clone() const (NonStandardDeck.cpp:47)
+==56148==    by 0x4002D22: main (DriverA2.cpp:182)
+==56148== 
+==56148== 20,808 bytes in 1 blocks are still reachable in loss record 12 of 13
+==56148==    at 0x48575F3: operator new[](unsigned long) (vg_replace_malloc.c:730)
+==56148==    by 0x4004670: Deck::Deck(Deck const&) (Deck.cpp:21)
+==56148==    by 0x4004C54: nonStandardDeck (NonStandardDeck.cpp:34)
+==56148==    by 0x4004C54: nonStandardDeck::clone() const (NonStandardDeck.cpp:47)
+==56148==    by 0x4002D43: main (DriverA2.cpp:189)
+==56148== 
+==56148== 73,728 bytes in 1 blocks are still reachable in loss record 13 of 13
+==56148==    at 0x4855858: malloc (vg_replace_malloc.c:447)
+==56148==    by 0x49458F6: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.35)
+==56148==    by 0x40107CE: call_init.part.0 (dl-init.c:74)
+==56148==    by 0x40108E3: call_init (dl-init.c:120)
+==56148==    by 0x40108E3: _dl_init (dl-init.c:121)
+==56148==    by 0x402D39F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+==56148== 
+==56148== LEAK SUMMARY:
+==56148==    definitely lost: 0 bytes in 0 blocks
+==56148==    indirectly lost: 0 bytes in 0 blocks
+==56148==      possibly lost: 0 bytes in 0 blocks
+==56148==    still reachable: 137,568 bytes in 13 blocks
+==56148==                       of which reachable via heuristic:
+==56148==                         newarray           : 63,696 bytes in 6 blocks
+==56148==         suppressed: 0 bytes in 0 blocks
+==56148== 
+==56148== For lists of detected and suppressed errors, rerun with: -s
+==56148== ERROR SUMMARY: 358486 errors from 4 contexts (suppressed: 0 from 0)

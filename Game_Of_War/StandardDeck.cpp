@@ -7,50 +7,33 @@
 
 #include "StandardDeck.h"
 
-
-// standardDeck::standardDeck()
-// {
-    
-// }
-
-standardDeck::standardDeck() : Deck(DECK_SIZE)
+standardDeck::standardDeck() : Deck(DECK_SIZE) // default constructor
 {
-    // if(numCards > 0)
-    // {
-    //     numCards_ = numCards;
-    // }
-    // else
-    // {
-    //     numCards_= 0;
-    // }
-
-    // if(numWins > 0)
-    // {
-    //     numWins_ = numWins;
-    // }
-    // else
-    // {
-    //     numWins_= 0;
-    // }
+    if(size_ > 0) // if size is greater than 0
+    {
+        size_ = size_; // set number of cards to the size of the deck
+    }
+    else
+    {
+        size_ = 0; // else set the number of cards to 0
+    }
 }
 
-standardDeck::standardDeck(const standardDeck & other) : Deck(other)
+standardDeck::standardDeck(const standardDeck & other) : Deck(other) // copy constructor
 {
-    std::cout << "Copying standardDeck..." << std::endl;
-    
-    for(int i = 0; i < numCards_; i++)
+    for(int i = 0; i < numCards_; i++) // iterate through the deck
     {
-        deck_[i] = other.deck_[i];
+        deck_[i] = other.deck_[i]; // copy each card
 
     } // copy the cards from the original deck into the new deck
 }
 
 Deck * standardDeck::clone() const
 {
-    return new standardDeck(*this);
+    return new standardDeck(*this); // creates a new copy of the current standardDeck object
 }
 
-standardDeck::~standardDeck()
+standardDeck::~standardDeck() // default destructor
 {
     // if(deck_ != nullptr)
     // {
@@ -59,14 +42,14 @@ standardDeck::~standardDeck()
 
 }
 
-void standardDeck::initializeDeck()
+void standardDeck::initializeDeck() // initialize the standard deck
 {
-    for(int suits = 1; suits < 5; suits++) 
+    for(int suits = 1; suits < 5; suits++) // iterate through suits
     {
-        for(int faces = 1; faces < 14; faces++)
+        for(int faces = 1; faces < 14; faces++) // iterate through faces
         {
-                Card newCard(suits, faces);
-                addCard(newCard);
+                Card newCard(suits, faces); // create a new card with the current suit and face
+                addCard(newCard); // add the card to the deck
         }
     }
 }

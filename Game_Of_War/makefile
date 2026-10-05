@@ -24,6 +24,5 @@ commit:
 valgrind:
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind.txt ./A2.exe
 
-
 run:
 	./A2.exe	

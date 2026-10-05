@@ -7,18 +7,18 @@
 
 #include "Deck.h"
 
-Deck::Deck() : numCards_(0), size_(0), deck_(new Card[size_]), numWins_(0), sumCards_(0) // initialization list
+Deck::Deck() : numCards_(0), size_(0), deck_(new Card[size_]) // initialization list
 {
 
 }
 
-Deck::Deck(int size) : numCards_(0), size_(size), deck_(new Card[size]), numWins_(0), sumCards_(0)// initialization list
+Deck::Deck(int size) : numCards_(0), size_(size), deck_(new Card[size])// initialization list
 {
 
 }
 
 // copy constructor for the Deck class
-Deck::Deck(const Deck & other) : numCards_(other.numCards_), size_(other.size_), deck_(new Card[other.size_]), numWins_(other.numWins_), sumCards_(other.sumCards_)
+Deck::Deck(const Deck & other) : numCards_(other.numCards_), size_(other.size_), deck_(new Card[other.size_])
 {
     for(int i = 0; i < numCards_; i++)  // copy each card from the original deck, seems kind of redundant for this project, but keep it for future projects
     {
@@ -134,15 +134,6 @@ int Deck::getNumCards() // returns the number of cards in the deck
     return numCards_;  
 }
 
-int Deck::getNumWins()  // returns the number of wins for the deck
-{
-    return numWins_;
-}
-
-void Deck::deckWins()
-{
-    numWins_++;
-}
 
 void Deck::displayCard(int i)   // prints the ith card
 {
@@ -153,6 +144,7 @@ void Deck::displayCard(int i)   // prints the ith card
 
 bool Deck::compare(Deck * Cards)   // compare the top card of this deck to the top card of another deck
 {
+
     if(getTopCard() == Cards->getTopCard()) // if the top cards are equal
     {
         return true; // return true
@@ -166,11 +158,13 @@ bool Deck::compare(Deck * Cards)   // compare the top card of this deck to the t
 
 std::string Deck::getTopCard() // return the face of the top card
 {
+
     return deck_[numCards_ - 1].getFace(); // return the face
 }
 
 int Deck::getSuitVal(int i) // return suit val of ith card
 {
+
     int suitVal = deck_[i].getSuitVal(); // get suit val of ith card
     
     return suitVal; // then return it
@@ -179,27 +173,15 @@ int Deck::getSuitVal(int i) // return suit val of ith card
     
 int Deck::getFaceVal(int i) // return face val of ith card
 {
+
     int faceVal = deck_[i].getFaceVal(); // get face val of ith card
 
     return faceVal; // then return it
 }
 
-void Deck::sumCards()  // add the current number of cards to the sum of cards
-{
-    sumCards_ = sumCards_ + numCards_;
-}
-
-int Deck::getAverageCards()
-{
-    int averageWins = sumCards_ / TOTALGAMES; // calculate the average number of cards
-
-    return averageWins; // return the average
-}
-
-
-
 void Deck::printDeck()  // prints the whole deck
 {
+
     for(int i = 0; i < numCards_; i++)
     {
         displayCard(i);
